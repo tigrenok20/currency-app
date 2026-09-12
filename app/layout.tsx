@@ -11,11 +11,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <GeolocationChecker/>
+        <GeolocationChecker />
         <Header />
-        
+
         {children}
-        
       </body>
     </html>
   );

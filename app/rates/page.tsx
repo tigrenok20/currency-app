@@ -7,9 +7,24 @@ import Section from '@/components/Section/Section';
 import Heading from '@/components/Heading/Heading';
 
 import css from './RatesPage.module.css';
+import { useEffect } from 'react';
+import { latestRates } from '@/lib/service/exchangeAPI';
+import { useCurrencyStore } from '@/lib/stores/currencyStore';
 
 export default function RatesPage() {
   const isError = false;
+  const baseCurrency = useCurrencyStore((state) => state.baseCurrency);
+  useEffect(() => {
+    const getRates = async () => {
+      try {
+        const data = await latestRates(baseCurrency);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getRates();
+  }, [baseCurrency]);
 
   return (
     <main className={css.main}>
